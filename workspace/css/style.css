@@ -4,10 +4,28 @@ html {
     font-family: 'Slabo 27px', serif;
 }
 
+.centered-content {
+    text-align: center;
+}
+
 div.index a:visited {
     color: white;
 }
 
-.centered-content {
-    text-align: center;
+div.index ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
+
+div.index li a {
+    color: white;
+    text-decoration: none;
+}
+
+div.index li a:hover {
+    background-color: #FCFCFC;
+    color: #000000;
+}
+    
