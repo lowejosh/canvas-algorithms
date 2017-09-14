@@ -1,6 +1,6 @@
 html {
     background-color: #101010;
-    color: white;
+    color: #FFFFFF;
     font-family: 'Slabo 27px', serif;
 }
 
@@ -9,7 +9,7 @@ html {
 }
 
 div.index a:visited {
-    color: white;
+    color: #FFFFFF;
 }
 
 div.index ul {
@@ -20,7 +20,7 @@ div.index ul {
 }
 
 div.index li a {
-    color: white;
+    color: #FFFFFF;
     text-decoration: none;
 }
 
