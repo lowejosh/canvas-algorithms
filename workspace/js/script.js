@@ -4,21 +4,25 @@ var ctx = c.getContext("2d");
 ctx.fillStyle = "#FFFFFF";
 
 // Vars
-var iterations = 4;
-var square = c.width;
+var iterations = 5;
+var square = c.width / 3;
 
 function iteration(x, y, iterationCount) {
-    if (iterationCount != iterations) {
+    if (iterationCount != iterations + 1) {
+
 
         square = getSquareSize(iterationCount);
-
         ctx.fillRect(x, y, square, square);
 
 
         for (var i = 0; i < 8; i++) {
-            var rx = getParamX(i, square, x);
-            var ry = getParamY(i, square, y);
-            iteration(rx, ry, iterationCount + 1);
+            if (iterationCount + 1 != iterations + 1) {
+                square = getSquareSize(iterationCount + 1);
+                var rx = getParamX(i, square, x);
+                var ry = getParamY(i, square, y);
+                iteration(rx, ry, iterationCount + 1);
+                document.write(i + " | " + rx + " | " + x + " || ");
+            }
         } 
     }
 }
