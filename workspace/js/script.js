@@ -4,7 +4,7 @@ var ctx = c.getContext("2d");
 ctx.fillStyle = "#FFFFFF";
 
 // Vars
-var iterations = 5;
+var iterations = 8;
 var square = c.width / 3;
 
 function iteration(x, y, iterationCount) {
@@ -21,7 +21,6 @@ function iteration(x, y, iterationCount) {
                 var rx = getParamX(i, square, x);
                 var ry = getParamY(i, square, y);
                 iteration(rx, ry, iterationCount + 1);
-                document.write(i + " | " + rx + " | " + x + " || ");
             }
         } 
     }
@@ -38,11 +37,11 @@ function getParamX(i, squareSize, x) {
 }
 
 function getParamY(i, squareSize, y) {
-       if (i == 0 || i == 1 || i == 2) {
+       if (i < 3) {
             return (y - (2 * square));
-       } else if (i == 3 || i == 4) {
+       } else if (i < 5) {
             return (y + square);
-       } else if (i == 5 || i == 6 || i == 7) {
+       } else {
             return (y + (4 * square));
        }
 }
