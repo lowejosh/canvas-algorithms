@@ -1,32 +1,50 @@
 // Canvas 
 var c = document.getElementById("sierpinskiCarpet"); 
 var ctx = c.getContext("2d");
+ctx.fillStyle = "#FFFFFF";
 
 // Vars
-var iterations = 5
+var iterations = 4;
 var square = c.width;
 
+function iteration(x, y, iterationCount) {
+    if (iterationCount != iterations) {
 
-function iteration(var x, var y, var iterations) {
-    fillRect(x, y, square, square);
+        square = getSquareSize(iterationCount);
 
-    square = square / 3;
-    var x1 = x - (2 * square);
-    var x2 = x + square;
-    var x3 = x + (4 * square);
-    var y1 = y - (2 * square);
-    var y2 = y + square;
-    var y3 = y + (4 * square);
+        ctx.fillRect(x, y, square, square);
 
-    iteration(x1, y1, iteration - 1);
-    iteration(x2, y1, iteration - 1);
-    iteration(x3, y1, iteration - 1);
-    iteration(x1, y2, iteration - 1);
-    iteration(x3, y2, iteration - 1);
-    iteration(x1, y3, iteration - 1);
-    iteration(x2, y3, iteration - 1);
-    iteration(x3, y3, iteration - 1);
 
-    
-
+        for (var i = 0; i < 8; i++) {
+            var rx = getParamX(i, square, x);
+            var ry = getParamY(i, square, y);
+            iteration(rx, ry, iterationCount + 1);
+        } 
+    }
 }
+
+function getParamX(i, squareSize, x) {
+       if (i == 0 || i == 3 || i == 5) {
+            return (x - (2 * square));
+       } else if (i == 1 || i == 6) {
+            return (x + square);
+       } else if (i == 2 || i == 4 || i == 7) {
+            return (x + (4 * square));
+       }
+}
+
+function getParamY(i, squareSize, y) {
+       if (i == 0 || i == 1 || i == 2) {
+            return (y - (2 * square));
+       } else if (i == 3 || i == 4) {
+            return (y + square);
+       } else if (i == 5 || i == 6 || i == 7) {
+            return (y + (4 * square));
+       }
+}
+
+function getSquareSize(iterationCount) {
+    return c.width / Math.pow(3, iterationCount);
+}
+
+iteration(square, square, 1);
