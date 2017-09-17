@@ -1,11 +1,11 @@
 // Canvas settings
-var c = document.getElementById("sierpinskiCarpet"); 
+var c = document.getElementById("sierpinskiTriangle"); 
 var ctx = c.getContext("2d");
 ctx.fillStyle = "#FFFFFF";
 
 // Vars
 var iterations = 3;
-var square = c.width / 3;
+var length = c.width / 3;
 
 // Recursive function that calls upon itself until it reaches the set amount of iterations
 function iteration(x, y, iterationCount) {
@@ -16,6 +16,7 @@ function iteration(x, y, iterationCount) {
         square = getSquareSize(iterationCount);
         ctx.fillRect(x, y, square, square);
         
+        /*
         // For every sub square
         for (var i = 0; i < 8; i++) {
             // If the current iteration isn't the last
@@ -28,9 +29,11 @@ function iteration(x, y, iterationCount) {
                 // Recursively call the function for the next iteration
                 iteration(rx, ry, iterationCount + 1);
             }
-        } 
+        } */
     }
 }
+
+// Draws an equilateral triangle
 
 // Returns the x value for proper square placement
 function getParamX(i, squareSize, x) {
@@ -59,6 +62,7 @@ function getSquareSize(iterationCount) {
     return c.width / Math.pow(3, iterationCount);
 }
 
+/*
 // Redraws the sierpinski carpet with a new iteration setting
 function reDraw(iterationChoice) {
     // Clear the screen
@@ -74,6 +78,7 @@ function reDraw(iterationChoice) {
     // Start the recursion
     iteration(square, square, 1);
 }
+*/
 
 // Begin the recursive function with the initial square
-iteration(square, square, 1);
+iteration(length, length, 1);
