@@ -10,7 +10,6 @@ var length = c.width / 2;
 // Recursive function that calls upon itself until it reaches the set iterations
 function iteration(x, y, iterationCount) {
     if (iterationCount != iterations + 1) {
-//        document.write(iterations + " | " + iterationCount + " | ");
         length = getLength(iterationCount);
         drawTriangle(x, y);
         for (var i = 0; i < 3; i++) {
@@ -25,6 +24,7 @@ function iteration(x, y, iterationCount) {
 // Draws an equilateral triangle at the center
 function drawTriangle(x, y) {
     x-=c.width/4; // centers the triangle x axis
+    ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x + length, y);
     ctx.lineTo(x + length/2, y + length);
@@ -58,7 +58,6 @@ function getLength(iterationCount) {
     return c.width / Math.pow(2, iterationCount);
 }
 
-
 // Redraws the sierpinski triangle with a new iteration setting
 function reDraw(iterationChoice) {
     ctx.clearRect(0, 0, c.width, c.height); // clear screen
@@ -67,7 +66,6 @@ function reDraw(iterationChoice) {
     iterations = parseInt(iterationChoice);
     iteration(length, length, 1);
 }
-
 
 // Begin the recursive function with the initial length
 iteration(length, length, 1);

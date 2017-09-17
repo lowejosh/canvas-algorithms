@@ -62,9 +62,7 @@ function getSquareSize(iterationCount) {
 // Redraws the sierpinski carpet with a new iteration setting
 function reDraw(iterationChoice) {
     // Clear the screen
-    ctx.fillStyle = "#101010";
-    ctx.fillRect(0, 0, c.width, c.height);
-    ctx.fillStyle = "#FFFFFF";
+    ctx.clearRect(0, 0, c.width, c.height);
     // Reset the square value
     square = c.width / 3;
 
