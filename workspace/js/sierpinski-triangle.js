@@ -14,9 +14,7 @@ function iteration(x, y, iterationCount) {
         for (var i = 0; i < 3; i++) {
             if (iterationCount + 1 != iterations + 1) {
                 length = getLength(iterationCount);
-                var rx = getParamX(i, x);
-                var ry = getParamY(i, y);
-                iteration(rx, ry, iterationCount + 1);
+                iteration(getParamX(i, x), getParamY(i, y), iterationCount + 1);
             }
         }
     }
