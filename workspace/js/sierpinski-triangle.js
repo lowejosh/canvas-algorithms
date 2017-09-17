@@ -59,7 +59,7 @@ function getLength(iterationCount) {
 }
 
 
-// Redraws the sierpinski carpet with a new iteration setting
+// Redraws the sierpinski triangle with a new iteration setting
 function reDraw(iterationChoice) {
     ctx.fillStyle = "#101010";
     ctx.fillRect(0, 0, c.width, c.height);
@@ -69,7 +69,6 @@ function reDraw(iterationChoice) {
     document.getElementById("iterationDisplay").innerHTML = iterationChoice;
     iterations = parseInt(iterationChoice);
     iteration(length, length, 1);
-    document.write(iterations);
 }
 
 
