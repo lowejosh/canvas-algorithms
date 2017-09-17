@@ -7,8 +7,10 @@ ctx.fillStyle = "#FFFFFF";
 var iterations = 3;
 var length = c.width / 2;
 
+// Recursive function that calls upon itself until it reaches the set iterations
 function iteration(x, y, iterationCount) {
     if (iterationCount != iterations + 1) {
+//        document.write(iterations + " | " + iterationCount + " | ");
         length = getLength(iterationCount);
         drawTriangle(x, y);
         for (var i = 0; i < 3; i++) {
@@ -31,7 +33,7 @@ function drawTriangle(x, y) {
     ctx.fill();
 }
 
-// Returns the x value for proper length placement
+// Returns the x value for proper sub triangle placement
 function getParamX(i, x) {
        if (i == 0) {
             return (x + length/4);
@@ -42,7 +44,7 @@ function getParamX(i, x) {
        }
 }
 
-// Returns the y value for proper length placement
+// Returns the y value for proper sub triangle placement
 function getParamY(i, y) {
        if (i == 0) {
             return (y - length/2);
@@ -59,11 +61,8 @@ function getLength(iterationCount) {
 
 // Redraws the sierpinski triangle with a new iteration setting
 function reDraw(iterationChoice) {
-    ctx.fillStyle = "#101010";
-    ctx.fillRect(0, 0, c.width, c.height);
-    ctx.fillStyle = "#FFFFFF";
-    length = c.width / 2;
-
+    ctx.clearRect(0, 0, c.width, c.height); // clear screen
+    length = c.width / 2;                   // reset length
     document.getElementById("iterationDisplay").innerHTML = iterationChoice;
     iterations = parseInt(iterationChoice);
     iteration(length, length, 1);
