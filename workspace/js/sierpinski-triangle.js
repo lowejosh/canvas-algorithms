@@ -4,7 +4,7 @@ var ctx = c.getContext("2d");
 ctx.fillStyle = "#FFFFFF";
 
 // Vars
-var iterations = 4;
+var iterations = 3;
 var length = c.width / 2;
 
 function iteration(x, y, iterationCount) {
@@ -69,6 +69,7 @@ function reDraw(iterationChoice) {
     document.getElementById("iterationDisplay").innerHTML = iterationChoice;
     iterations = parseInt(iterationChoice);
     iteration(length, length, 1);
+    document.write(iterations);
 }
 
 
