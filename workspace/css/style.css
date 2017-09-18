@@ -4,6 +4,10 @@ html {
     font-family: 'Raleway', sans-serif;
 }
 
+canvas {
+    margin: 5px;
+}
+
 .centered-content {
     text-align: center;
 }

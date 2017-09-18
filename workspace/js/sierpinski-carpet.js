@@ -4,7 +4,7 @@ var ctx = c.getContext("2d");
 ctx.fillStyle = "#FFFFFF";
 
 // Vars
-var iterations = 3;
+var iterations = 6;
 var square = c.width / 3;
 
 // Recursive function that calls upon itself until it reaches the set amount of iterations
