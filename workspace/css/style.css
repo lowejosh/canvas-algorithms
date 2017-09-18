@@ -42,12 +42,15 @@ div.index li a:hover {
     padding-bottom: 2px;
     text-align: center;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background-color: #FCFCFC;
     color: #000000;
+    background-attachment: scroll;
+    background-repeat: repeat;
+    background-position: 0% 0%;
 }
 
 div.footer a:hover, div.footer a:visited:hover {
