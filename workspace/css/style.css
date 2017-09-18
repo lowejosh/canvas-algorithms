@@ -1,6 +1,6 @@
 html {
     background-color: #101010;
-    color: #FFFFFF;
+    color: #FCFCFC;
     font-family: 'Slabo 27px', serif;
 }
 
@@ -13,7 +13,7 @@ html {
 }
 
 div.index a:visited {
-    color: #FFFFFF;
+    color: #FCFCFC;
 }
 
 div.index ul {
@@ -24,7 +24,7 @@ div.index ul {
 }
 
 div.index li a {
-    color: #FFFFFF;
+    color: #FCFCFC;
     text-decoration: none;
 }
 
@@ -32,4 +32,29 @@ div.index li a:hover {
     background-color: #FCFCFC;
     color: #000000;
 }
-    
+
+.footer { 
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #FCFCFC;
+    color: #000000;
+}
+
+div.footer a:hover, div.footer a:visited:hover {
+    background-color: #101010; 
+    color: #FCFCFC;
+}
+
+div.footer a {
+    text-decoration: none;
+}
+
+div.footer a:visited {
+    color: #101010;
+}
