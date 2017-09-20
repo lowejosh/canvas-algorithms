@@ -1,7 +1,37 @@
 // Canvas settings
-//var c = document.getElementById("mergeSortVisualization"); 
-//var ctx = c.getContext("2d");
-//ctx.fillStyle = "#FFFFFF";
+var c = document.getElementById("mergeSortVis"); 
+var ctx = c.getContext("2d");
+ctx.fillStyle = "#FFFFFF";
+
+// Global Vars
+var randomArray = [];
+const NUM_OF_NUMS = 50;
+
+// Main
+function main() {
+    setup();
+    setInterval(process, 100);
+}
+
+// Setup
+function setup() {
+    for (var i = 0; i < NUM_OF_NUMS; i++) {
+        var rand = Math.ceil(Math.random()*100);
+        randomArray.push(rand);
+    }
+}
+
+// Frame process
+function process() {
+    // Clear the screen
+    ctx.clearRect(0, 0, c.width, c.height);
+
+    // For every numbers in the random array
+    for (var i = 0; i < randomArray.length; i++) {
+        // Draw a corresponding visual depiction 
+        ctx.fillRect(i * (c.width / NUM_OF_NUMS), c.width - randomArray[i] * 4, (c.width / NUM_OF_NUMS) - 2, randomArray[i] * 4);
+    }
+}
 
 // Recursively splits the array and merges them again after they've been ordered
 function mergeSort(array) {
@@ -9,9 +39,12 @@ function mergeSort(array) {
         return array;
     }
 
+    // Split the array
     const half = Math.ceil(array.length / 2);
     const leftSide = array.slice(0, half);
     const rightSide = array.slice(half);
+
+    // Recursively merge the split arrays
     return sort(mergeSort(leftSide), mergeSort(rightSide));
 }
 
@@ -41,4 +74,5 @@ function sort(leftSide, rightSide) {
     return results.concat(leftSide.slice(i)).concat(rightSide.slice(ii));
 }
 
-console.log(mergeSort([23,2,3,414,23,3,1,2,6,8,9,6,4,33]));
+main();
+randomArray = mergeSort(randomArray);
