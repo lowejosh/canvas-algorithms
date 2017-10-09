@@ -7,8 +7,10 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     </head>
     <body>
-        <div class="centered-content">
-            <h2>sierpinski carpet</h2>
+        <div class="title">
+            <h4>Sierpinski Carpet</h4>
+        </div>
+        <div class="sidebar">
             <div class="index">
                 <ul>
                     <li>
@@ -16,10 +18,13 @@
                     </li>
                 </ul>
             </div>
-            <canvas id="sierpinskiCarpet" height="500" width="500"></canvas><br />
+            <br />
             <span id="iterationDisplay">6</span> iterations<br /> 
-            <input type="range" value="6" min="0" max="6" step="1" autocomplete="off" oninput="reDraw(this.value);">
-        </div> 
+            <input style="width:80%" type="range" value="6" min="0" max="6" step="1" autocomplete="off" oninput="reDraw(this.value);">
+        </div>
+        <div class="canvas">
+            <canvas id="sierpinskiCarpet"></canvas><br />
+        </div>
         <br />
 
         <div class="footer">
