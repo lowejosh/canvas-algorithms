@@ -1,13 +1,13 @@
 // Canvas settings
-var c = document.getElementById("sierpinskiCarpet"); 
+let c = document.getElementById("sierpinskiCarpet"); 
 c.setAttribute('height', window.innerHeight - 64);
 c.setAttribute('width', window.innerHeight - 64); // Canvas needs to be square-shaped
-var ctx = c.getContext("2d");
+let ctx = c.getContext("2d");
 ctx.fillStyle = "#FFFFFF";
 
 // Vars
-var iterations = 6;
-var square = c.width / 3;
+let iterations = 6;
+let square = c.width / 3;
 let prevIterationCount = iterations;
 let length = c.width / 2;
 let fillInput = document.getElementById("chosenColor");
@@ -32,7 +32,7 @@ function iteration(x, y, iterationCount) {
             square = getSquareSize(iterationCount);
             ctx.fillRect(x, y, square, square);
         
-        for (var i = 0; i < 8; i++) {
+        for (let i = 0; i < 8; i++) {
             if (iterationCount + 1 != iterations + 1) {
                 square = getSquareSize(iterationCount + 1);
                 iteration(getParamX(i, x), getParamY(i, y), iterationCount + 1);

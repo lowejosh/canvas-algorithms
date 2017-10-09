@@ -97,11 +97,14 @@ canvas {
     color: #131313;
 }
 
-.sidebar-button:after {
-    background-color: #FAFA32;
+.sidebar-button:active {
+    background-color: #C9C9C9;
     color: #131313;
 }
 
+.sidebar-button::-moz-focus-inner {
+  border: 0;
+}
 
 .centered-content {
     text-align: center;
