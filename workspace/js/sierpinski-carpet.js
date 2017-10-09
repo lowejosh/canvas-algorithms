@@ -1,10 +1,8 @@
 // Canvas settings
 var c = document.getElementById("sierpinskiCarpet"); 
 c.setAttribute('height', window.innerHeight - 64);
-//c.setAttribute('width', window.innerWidth - 190);
+c.setAttribute('width', window.innerHeight - 64); // Canvas needs to be square-shaped
 var ctx = c.getContext("2d");
-//ctx.canvas.width = window.innerWidth - 190;
-//ctx.canvas.height = window.innerHeight - 64;
 ctx.fillStyle = "#FFFFFF";
 
 // Vars

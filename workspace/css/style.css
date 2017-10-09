@@ -11,35 +11,76 @@ html {
     font-family: 'Raleway', sans-serif;
 }
 
-.title {
+.title-wrap {
+    width: 100%;
     left: 0;
     top: 0;
     position: fixed;
-    width: 100%;
-    text-align: center;
     background-color: #131313;
     height: 32px;
-    line-height: 32px;
-    background-attachment: scroll;
+/*    background-attachment: scroll;
     background-repeat: repeat;
-    background-position: 0% 0%;
+    background-position: 0% 0%; */
+}
+
+.title {
+    text-align: center;
+    line-height: 32px;
+    margin-left: 190px;
 }
 
 .canvas {
-    margin-left: 190px;
+    width: 100%;
     position: fixed;
     top: 32px;
 }
 
+canvas {
+    padding-left: 190px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.return-button a {
+    top: 0;
+    left: 0;
+    width: 190px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    position: fixed;
+    background-color: #1B1B1B;
+    text-decoration: none;
+    color: #FCFCFC;
+    font-style: italic;
+}
+
+.return-button a:hover {
+    background-color: #FCFCFC;
+    color: #101010;
+}
+
+.sidebar-title {
+    font-weight: bold;
+    top: 32px;
+    left: 0;
+    width: 190px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    position: fixed;
+    background-color: #131313;
+}
+
 .sidebar {
-    padding-top: 12px;
     text-align: center;
     display: inline-block;
     background-color: #272727;
     width: 190px;
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 32px;
+    top: 64px;
     bottom: 0;
 }
 
@@ -73,17 +114,18 @@ div.index li a:hover {
 }
 
 .footer { 
-    text-align: center;
     width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background-color: #FCFCFC;
-    color: #000000;
-    background-attachment: scroll;
+    text-align: center;
+    color: #101010;
+    border-top: solid 1px #101010;
+/*    background-attachment: scroll;
     background-repeat: repeat;
-    background-position: 0% 0%;
+    background-position: 0% 0%; */
     height: 32px;
     line-height: 32px;
 }
@@ -99,4 +141,12 @@ div.footer a {
 
 div.footer a:visited {
     color: #101010;
+}
+
+.color-picker {
+    margin-top: 3px;
+    border: none;
+    width: 64px;
+    height: 20px;
+
 }

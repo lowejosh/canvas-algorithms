@@ -1,18 +1,22 @@
 // Canvas settings
-var c = document.getElementById("sierpinskiTriangle"); 
-var ctx = c.getContext("2d");
-ctx.fillStyle = "#FFFFFF";
+let c = document.getElementById("sierpinskiTriangle"); 
+c.setAttribute('height', window.innerHeight - 64);
+c.setAttribute('width', window.innerHeight - 64); // Needs to be square-shaped
+let ctx = c.getContext("2d");
+ctx.fillStyle = "#FCFCFC";
 
 // Vars
-var iterations = 7;
-var length = c.width / 2;
+let iterations = 7;
+let length = c.width / 2;
+let input = document.getElementById("chosenColor");
+input.value = "#FCFCFC";
 
 // Recursive function that calls upon itself until it reaches the set iterations
 function iteration(x, y, iterationCount) {
     if (iterationCount != iterations + 1) {
         length = getLength(iterationCount);
         drawTriangle(x, y);
-        for (var i = 0; i < 3; i++) {
+        for (let i = 0; i < 3; i++) {
             if (iterationCount + 1 != iterations + 1) {
                 length = getLength(iterationCount);
                 iteration(getParamX(i, x), getParamY(i, y), iterationCount + 1);
@@ -58,6 +62,12 @@ function getLength(iterationCount) {
     return c.width / Math.pow(2, iterationCount);
 }
 
+// Begin the recursive function with the initial length
+iteration(length, length, 1);
+
+
+// ---------- SETTING FUNCTIONS ----------
+
 // Redraws the sierpinski triangle with a new iteration setting
 function reDraw(iterationChoice) {
     ctx.clearRect(0, 0, c.width, c.height); // clear screen
@@ -67,5 +77,12 @@ function reDraw(iterationChoice) {
     iteration(length, length, 1);
 }
 
-// Begin the recursive function with the initial length
-iteration(length, length, 1);
+// Color Picker
+input.addEventListener("change", function() {
+    let color = input.value;
+    ctx.fillStyle = color;
+    iterationChoice = document.getElementById("iterationChoice").value
+    reDraw(iterationChoice);
+}, false);
+
+

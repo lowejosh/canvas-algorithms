@@ -2,24 +2,31 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Sierpinski Triangle</title>
+        <title>Sierpinski Carpet</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     </head>
     <body>
-        <div class="centered-content">
-            <h2>sierpinski triangle</h2>
-            <div class="index">
-                <ul>
-                    <li>
-                        <a href="main.html">return</a>
-                    </li>
-                </ul>
+        <div class="title-wrap">
+            <div class="title">
+                <h4>Sierpinski Triangle</h4>
             </div>
-            <canvas id="sierpinskiTriangle" height="500" width="500"></canvas><br />
-            <span id="iterationDisplay">7</span> iterations<br /> 
-            <input type="range" value="7" min="0" max="7" step="1" autocomplete="off" oninput="reDraw(this.value);">
-        </div> 
+        </div>
+        <div class="canvas">
+            <canvas id="sierpinskiTriangle"></canvas><br />
+        </div>
+        <div class="return-button">
+            <a href="main.html">Back to Menu</a>
+        </div>
+        <div class="sidebar-title">
+            Settings
+        </div>
+        <div class="sidebar">
+            <br /><br />
+            <span id="iterationDisplay">7</span> Iterations<br /> 
+            <input id="iterationChoice" style="width:80%;" type="range" value="7" min="0" max="7" step="1" autocomplete="off" oninput="reDraw(this.value);">
+            <br /><br />Fill Color<br /><input id="chosenColor" class="color-picker" type="color" value="#FCFCFC">
+        </div>
         <br />
 
         <div class="footer">

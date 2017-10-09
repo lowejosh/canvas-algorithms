@@ -15,15 +15,17 @@
         <div class="canvas">
             <canvas id="sierpinskiCarpet"></canvas><br />
         </div>
-        <div class="return-button">
-            <a href="main.html">Back to Menu</a>
-        </div>
-        <div class="sidebar-title">
-            Settings
-        </div>
         <div class="sidebar">
+            <div class="index">
+                <ul>
+                    <li>
+                        <a href="main.html">return</a>
+                    </li>
+                </ul>
+            </div>
+            <br />
             <span id="iterationDisplay">6</span> iterations<br /> 
-            <input style="width:80%;" type="range" value="6" min="0" max="6" step="1" autocomplete="off" oninput="reDraw(this.value);">
+            <input style="width:80%" type="range" value="6" min="0" max="6" step="1" autocomplete="off" oninput="reDraw(this.value);">
         </div>
         <br />
 
