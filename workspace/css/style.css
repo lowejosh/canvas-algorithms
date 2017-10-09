@@ -26,9 +26,8 @@ html {
 }
 
 .canvas {
-    display: inline-block;
     margin-left: 190px;
-    position: absolute;
+    position: fixed;
     top: 32px;
 }
 
