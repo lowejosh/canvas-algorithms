@@ -8,12 +8,29 @@ ctx.fillStyle = "#FFFFFF";
 // Vars
 var iterations = 6;
 var square = c.width / 3;
+let prevIterationCount = iterations;
+let length = c.width / 2;
+let fillInput = document.getElementById("chosenColor");
+let bgInput = document.getElementById("backgroundColor");
+let colorList;
+let randomColors = false;
+let randomLayeredColors = false;
+fillInput.value = "#FCFCFC";
+bgInput.value = "#1B1B1B";
 
 // Recursive function that calls upon itself until it reaches the set amount of iterations
 function iteration(x, y, iterationCount) {
-    if (iterationCount != iterations + 1) {
-        square = getSquareSize(iterationCount);
-        ctx.fillRect(x, y, square, square);
+        // Random Colors
+        if (randomColors == true) {
+            ctx.fillStyle = randomColor();
+        }
+        // Random Layered Colors
+        if (randomLayeredColors == true) {
+            ctx.fillStyle = colorList[iterationCount - 1];
+        }
+        if (iterationCount != iterations + 1) {
+            square = getSquareSize(iterationCount);
+            ctx.fillRect(x, y, square, square);
         
         for (var i = 0; i < 8; i++) {
             if (iterationCount + 1 != iterations + 1) {
@@ -62,3 +79,45 @@ function reDraw(iterationChoice) {
 
 // Begin the recursive function with the initial square
 iteration(square, square, 1);
+
+// Fill Color Picker
+fillInput.addEventListener("change", function() {
+    randomLayeredColors = false;
+    randomColors = false;
+    let color = fillInput.value;
+    ctx.fillStyle = color;
+    iterationChoice = document.getElementById("iterationChoice").value
+    reDraw(iterationChoice);
+}, false);
+
+// Background Color Picker
+bgInput.addEventListener("change", function() {
+    let color = bgInput.value;
+    document.getElementsByTagName("html")[0].style.backgroundColor = color;
+}, false);
+
+// Random Colors
+function randomColor() {
+    return '#' + ("000000" + Math.random().toString(16).slice(2, 8).toUpperCase()).slice(-6);
+}
+
+// Radio Function
+function randomSettingHandler(input) {
+    if (input == 1) {
+        randomLayeredColors = false;         
+        randomColors = true; 
+        reDrawCurrentIteration();
+    } else {
+        colorList = [randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor()]
+        console.log(colorList);
+        randomColors = false; 
+        randomLayeredColors = true;         
+        reDrawCurrentIteration();
+    }
+}
+
+function reDrawCurrentIteration() {
+        iterationChoice = document.getElementById("iterationChoice").value;
+        reDraw(iterationChoice);
+}
+

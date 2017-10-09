@@ -22,8 +22,14 @@
             Settings
         </div>
         <div class="sidebar">
+            <br /><br />
             <span id="iterationDisplay">6</span> iterations<br /> 
-            <input style="width:80%;" type="range" value="6" min="0" max="6" step="1" autocomplete="off" oninput="reDraw(this.value);">
+            <input id="iterationChoice" style="width:80%;" type="range" value="6" min="0" max="6" step="1" autocomplete="off" oninput="reDraw(this.value);">
+            <br /><br />Fill Color<br /><input id="chosenColor" class="color-picker" type="color" value="#FCFCFC">
+            <br /><br />Background Color<br /><input id="backgroundColor" class="color-picker" type="color" value="#FCFCFC">
+            <br /><br /><br /><button class="sidebar-button" onClick="randomSettingHandler(1)" id="randomColorButton">Random Colors</button>
+            <br /><br /><br /><button class="sidebar-button" onClick="randomSettingHandler(2)" id="randomColorLayersButton">Random Color Layers</button>
+        </div>
         </div>
         <br />
 
