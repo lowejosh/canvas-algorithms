@@ -90,6 +90,6 @@ fillInput.addEventListener("change", function() {
 // Background Color Picker
 bgInput.addEventListener("change", function() {
     let color = bgInput.value;
-    document.getElementById("html").style.backgroundColor = color;
+    document.getElementsByTagName("html")[0].style.backgroundColor = color;
 }, false);
 
