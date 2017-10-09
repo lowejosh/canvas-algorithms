@@ -8,8 +8,10 @@ ctx.fillStyle = "#FCFCFC";
 // Vars
 let iterations = 7;
 let length = c.width / 2;
-let input = document.getElementById("chosenColor");
-input.value = "#FCFCFC";
+let fillInput = document.getElementById("chosenColor");
+let bgInput = document.getElementById("backgroundColor");
+fillInput.value = "#FCFCFC";
+bgInput.value = "#1B1B1B";
 
 // Recursive function that calls upon itself until it reaches the set iterations
 function iteration(x, y, iterationCount) {
@@ -77,12 +79,17 @@ function reDraw(iterationChoice) {
     iteration(length, length, 1);
 }
 
-// Color Picker
-input.addEventListener("change", function() {
-    let color = input.value;
+// Fill Color Picker
+fillInput.addEventListener("change", function() {
+    let color = fillInput.value;
     ctx.fillStyle = color;
     iterationChoice = document.getElementById("iterationChoice").value
     reDraw(iterationChoice);
 }, false);
 
+// Background Color Picker
+bgInput.addEventListener("change", function() {
+    let color = bgInput.value;
+    document.getElementById("html").style.backgroundColor = color;
+}, false);
 
