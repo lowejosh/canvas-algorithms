@@ -84,6 +84,25 @@ canvas {
     bottom: 0;
 }
 
+.sidebar-button {
+    background-color: #131313;
+    color: #FCFCFC;
+    border: none;
+    padding: 5px;
+    width: 85%;
+}
+
+.sidebar-button:hover {
+    background-color: #FCFCFC;
+    color: #131313;
+}
+
+.sidebar-button:after {
+    background-color: #FAFA32;
+    color: #131313;
+}
+
+
 .centered-content {
     text-align: center;
 }

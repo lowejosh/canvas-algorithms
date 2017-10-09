@@ -9,10 +9,9 @@ ctx.fillStyle = "#FCFCFC";
 let iterations = 7;
 let prevIterationCount = iterations;
 let length = c.width / 2;
-let colorList = [randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor()]
-console.log(colorList);
 let fillInput = document.getElementById("chosenColor");
 let bgInput = document.getElementById("backgroundColor");
+let colorList;
 let randomColors = false;
 let randomLayeredColors = false;
 fillInput.value = "#FCFCFC";
@@ -97,6 +96,8 @@ function reDraw(iterationChoice) {
 
 // Fill Color Picker
 fillInput.addEventListener("change", function() {
+    randomLayeredColors = false;
+    randomColors = false;
     let color = fillInput.value;
     ctx.fillStyle = color;
     iterationChoice = document.getElementById("iterationChoice").value
@@ -112,5 +113,24 @@ bgInput.addEventListener("change", function() {
 // Random Colors
 function randomColor() {
     return '#' + ("000000" + Math.random().toString(16).slice(2, 8).toUpperCase()).slice(-6);
+}
+
+// Radio Function
+function randomSettingHandler(input) {
+    if (input == 1) {
+        randomLayeredColors = false;         
+        randomColors = true; 
+        reDrawCurrentIteration();
+    } else {
+        colorList = [randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor()]
+        randomColors = false; 
+        randomLayeredColors = true;         
+        reDrawCurrentIteration();
+    }
+}
+
+function reDrawCurrentIteration() {
+        iterationChoice = document.getElementById("iterationChoice").value;
+        reDraw(iterationChoice);
 }
 
