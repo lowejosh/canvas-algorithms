@@ -147,5 +147,12 @@ div.footer a:visited {
     border: none;
     width: 64px;
     height: 20px;
-
 }
+
+input[type="radio"] {
+  -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
+  -moz-appearance: checkbox;    /* Firefox */
+  -ms-appearance: checkbox;     /* not currently supported */
+}
+
+
