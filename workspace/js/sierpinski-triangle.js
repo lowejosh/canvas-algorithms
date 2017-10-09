@@ -7,20 +7,36 @@ ctx.fillStyle = "#FCFCFC";
 
 // Vars
 let iterations = 7;
+let prevIterationCount = iterations;
 let length = c.width / 2;
+let colorList = [randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor(), randomColor()]
+console.log(colorList);
 let fillInput = document.getElementById("chosenColor");
 let bgInput = document.getElementById("backgroundColor");
+let randomColors = false;
+let randomLayeredColors = false;
 fillInput.value = "#FCFCFC";
 bgInput.value = "#1B1B1B";
 
 // Recursive function that calls upon itself until it reaches the set iterations
 function iteration(x, y, iterationCount) {
+    // Random Colors
+    if (randomColors == true) {
+        ctx.fillStyle = randomColor();
+    }
+    // Random Layered Colors
+    if (randomLayeredColors == true) {
+        ctx.fillStyle = colorList[iterationCount - 1];
+    }
+
+    // Draw
     if (iterationCount != iterations + 1) {
         length = getLength(iterationCount);
         drawTriangle(x, y);
         for (let i = 0; i < 3; i++) {
             if (iterationCount + 1 != iterations + 1) {
                 length = getLength(iterationCount);
+                prevIterationCount = iterationCount; 
                 iteration(getParamX(i, x), getParamY(i, y), iterationCount + 1);
             }
         }
@@ -92,4 +108,9 @@ bgInput.addEventListener("change", function() {
     let color = bgInput.value;
     document.getElementsByTagName("html")[0].style.backgroundColor = color;
 }, false);
+
+// Random Colors
+function randomColor() {
+    return '#' + ("000000" + Math.random().toString(16).slice(2, 8).toUpperCase()).slice(-6);
+}
 
