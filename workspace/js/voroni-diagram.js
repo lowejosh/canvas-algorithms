@@ -18,17 +18,16 @@ for (let i = 0; i < NUM_OF_POINTS; i++) {
 }
 
 // Brute force through every pixel and every point to find the closest (i know...)
-for (let i = 0; i < c.width; i++) {
-    for (let ii = 0; ii < c.height; ii++) {
+//for (let i = 0; i < c.width; i++) {
+ //   for (let ii = 0; ii < c.height; ii++) {
         // Initial value
-        let closestPoint = pointArray[0];
-        let closestDist = Math.sqrt((pointArray[0][0] - i) + (pointArray[0][1] - ii));
-        console.log(closestDist);
-        for (let iii = 0; iii < NUM_OF_POINTS; i++) {
+  //      let closestDist = Math.sqrt(Math.pow(pointArray[0][0] - i, 2) + Math.pow(pointArray[0][1] - ii, 2));
+   //     console.log(closestDist);
+       // for (let iii = 0; iii < NUM_OF_POINTS; i++) {
              
-        }    
-    }
-}
+    //   }    
+   // }
+//}
 
 // Random Colors
 function randomColor() {
