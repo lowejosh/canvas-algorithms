@@ -6,38 +6,17 @@ let ctx = c.getContext("2d");
 ctx.fillStyle = "#FCFCFC";
 
 // Vars
-const NUM_OF_ROWS = 10;
-const NUM_OF_COLS = 10;
-const INC = c.height / NUM_OF_ROWS;
-const TRI_L = (c.width / NUM_OF_COLS) - NUM_OF_COLS;
+let inc = 0.02;
+let n = 5;
+let d = 8;
 
-// Draws a sideways triangle and x and y with input length
-function drawTriangle(x, y, length, type) {
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    if(type == 1) {
-        ctx.lineTo(x + length, y + length/2);
-    } else {
-        ctx.lineTo(x - length, y + length/2); 
-    }
-    ctx.lineTo(x, y + length);
-    ctx.closePath();
-    ctx.stroke();
-    ctx.fill();
-}
-
-function drawTriangleCol(x) {
-    for(let i = 0; i < NUM_OF_ROWS; i++) {
-        drawTriangle(x, i * INC, i * 5, 1);
-        drawTriangle(x + 20, i * INC, (c.width / NUM_OF_COLS) - NUM_OF_COLS, 2);
-    }
-}
-
+// Main function
 function main() {
-    for(let i = 0; i < NUM_OF_COLS; i++) {
-        drawTriangleCol()
+    let k = n / d;
+    for (let i < 0; i < Math.Pi * d; i+=inc) {
+    
     }
+
 }
 
 main();
-console.log('r');
