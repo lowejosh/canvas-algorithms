@@ -14,28 +14,36 @@ fillInput.value = "#FCFCFC";
 bgInput.value = "#1B1B1B";
 
 // Main draw function
-function drawRose(fill) {
+function drawRose() {
+    // Clear the screen
+    ctx.clearRect(0, 0, c.width, c.height);
     let n = getN(); 
     let d = getD();
+    updateSidebar(n, d);
     let k = n / d;
     for (let i = 0; i < Math.PI * d * 2; i+=inc) {
         let r = scale * Math.cos(k * i);
-        let x = r * Math.cos(i)
-        let y = r * Math.sin(i)
-        ctx.fillStyle = fill;
+        let x = r * Math.cos(i);
+        let y = r * Math.sin(i);
+        ctx.fillStyle = fillInput.value;
         ctx.fillRect(center + x, center + y, 1, 1);
     }
+}
 
+// Updates the sidebar values
+function updateSidebar(n, d) {
+    document.getElementById("nDisplay").innerHTML = n;
+    document.getElementById("dDisplay").innerHTML = d;
 }
 
 // Retrieve d value 
 function getD() {
-    return document.getElementByID("dChoice").value;
+    return document.getElementById("dChoice").value;
 }
 
 // Retrieve n value 
 function getN() {
-    return document.getElementByID("nChoice").value;
+    return document.getElementById("nChoice").value;
 }
 
 // Run the initial script
@@ -46,8 +54,7 @@ drawRose(5, 8, 150, 0.01, fillInput.value);
 
 // Fill Color Picker
 fillInput.addEventListener("change", function() {
-    let color = fillInput.value;
-    drawRose(5, 8, 150, 0.01, color);
+    drawRose();
 }, false);
 
 // Background Color Picker
