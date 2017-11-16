@@ -171,6 +171,26 @@ div.footer a:visited {
     height: 20px;
 }
 
+.styled-link {
+    color: #FCFCFC;
+    transition: 0.1s;
+    text-decoration: none;
+}
+
+.styled-link:hover {
+    color: #FFFFFF !important;
+    font-size: 17px;
+}
+
+.styled-link:active {
+    color: #CCCCCC;
+    font-size: 16px;
+}
+
+.styled-link:visited {
+    color: #CCCCCC;
+}
+
 input[type="radio"] {
   -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
   -moz-appearance: checkbox;    /* Firefox */
