@@ -7,13 +7,10 @@ let ctx = c.getContext("2d");
 // Vars
 let x = 0;
 let y = 0;
-let probability = 0.5;
-let length = 10;
-let lineWidth = 2;
-let fillInput = document.getElementById("chosenColor");
+let strokeInput = document.getElementById("chosenColor");
 let bgInput = document.getElementById("backgroundColor");
 let isColorRandom = false;
-fillInput.value = "#FCFCFC";
+strokeInput.value = "#FCFCFC";
 bgInput.value = "#1B1B1B";
 
 // Main draw function
@@ -24,15 +21,13 @@ function drawPattern() {
     ctx.clearRect(0, 0, c.width, c.height);
 
     // Retrieve parameters
-    let n = parseInt(document.getElementById("nChoice").value);
-    let d = parseInt(document.getElementById("dChoice").value);
-    let inc = parseFloat(document.getElementById("incChoice").value);
-    let scale = parseInt(document.getElementById("scaleChoice").value);
-    let size = parseInt(document.getElementById("thickChoice").value);
-    updateSidebar(n, d, inc, scale, size);
+    let probability = parseFloat(document.getElementById("probChoice").value);
+    let length = parseInt(document.getElementById("scaleChoice").value);
+    let lineWidth = parseFloat(document.getElementById("strokeChoice").value);
+    updateSidebar(probability, length, lineWidth);
 
     // Actually draw
-    ctx.strokeStyle = fillInput.value;
+    ctx.strokeStyle = strokeInput.value;
     while (y < c.height) {
         while (x < c.width) {
             if (Math.random() < probability) {
@@ -62,16 +57,14 @@ drawPattern();
 // ---------- SETTING FUNCTIONS ----------
 
 // Updates the sidebar values
-function updateSidebar(n, d, inc, scale, size) {
-    document.getElementById("nDisplay").innerHTML = n;
-    document.getElementById("dDisplay").innerHTML = d;
-    document.getElementById("incDisplay").innerHTML = inc;
+function updateSidebar(probability, scale, lineWidth) {
+    document.getElementById("probDisplay").innerHTML = probability;
     document.getElementById("scaleDisplay").innerHTML = scale;
-    document.getElementById("thickDisplay").innerHTML = size;
+    document.getElementById("strokeDisplay").innerHTML = lineWidth;
 }
 
-// Fill Color Picker
-fillInput.addEventListener("change", function() {
+// Stroke Color Picker
+strokeInput.addEventListener("change", function() {
     isColorRandom = false;
     drawPattern();
 }, false);
