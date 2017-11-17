@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>10PRINT Pattern</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
+    </head>
+    <body>
+        <div class="title-wrap">
+            <div class="title">
+                <h4>10PRINT Pattern</h4>
+            </div>
+        </div>
+        <div class="canvas">
+            <canvas id="tenPrint"></canvas><br />
+        </div>
+        <div class="return-button">
+            <a href="main.html">Back to Menu</a>
+        </div>
+        <div class="sidebar-title">
+            Settings
+        </div>
+        <div class="sidebar">
+            <br />
+            n: <span id="nDisplay">5</span><br /> 
+            <input id="nChoice" style="width:80%;" type="range" value="5" min="1" max="7" step="1" autocomplete="off" oninput="drawRose();">
+            <br /><br />
+            d: <span id="dDisplay">8</span><br /> 
+            <input id="dChoice" style="width:80%;" type="range" value="8" min="1" max="9" step="1" autocomplete="off" oninput="drawRose();">
+            <br /><br />
+            inc: <span id="incDisplay">0.01</span><br /> 
+            <input id="incChoice" style="width:80%;" type="range" value="0.01" min="0.001" max="0.1" step="0.001" autocomplete="off" oninput="drawRose();">
+            <br /><br />
+            scale: <span id="scaleDisplay">200</span><br /> 
+            <input id="scaleChoice" style="width:80%;" type="range" value="200" min="5" max="1000" step="5" autocomplete="off" oninput="drawRose();">
+            <br /><br />
+            thickness: <span id="thickDisplay">1</span><br /> 
+            <input id="thickChoice" style="width:80%;" type="range" value="1" min="1" max="15" step="1" autocomplete="off" oninput="drawRose();">
+            <br /><br />Fill Color<br /><input id="chosenColor" class="color-picker" type="color" value="#FCFCFC">
+            <br /><br />Background Color<br /><input id="backgroundColor" class="color-picker" type="color" value="#FCFCFC">
+            <br /><br /><button class="sidebar-button" onClick="randomColors()" id="randomColorButton">Random Colors</button>
+            <br /><br />
+            <a class="styled-link" href="https://en.wikipedia.org/wiki/Rose_(mathematics)">wiki</a>
+        </div>
+        <br />
+
+        <div class="footer">
+            Joshua Lowe | <a href="https://github.com/lowejosh/canvas-experiments">github</a>
+        </div>
+
+        <script src="js/tenPrint.js"></script>
+    </body>
+</html>
+        
+
