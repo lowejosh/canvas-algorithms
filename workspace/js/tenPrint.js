@@ -5,7 +5,11 @@ c.setAttribute('width', window.innerHeight - 64); // Needs to be square-shaped
 let ctx = c.getContext("2d");
 
 // Vars
-let center = c.width / 2;
+let x = 0;
+let y = 0;
+let probability = 0.5;
+let length = 10;
+let lineWidth = 2;
 let fillInput = document.getElementById("chosenColor");
 let bgInput = document.getElementById("backgroundColor");
 let isColorRandom = false;
@@ -13,8 +17,10 @@ fillInput.value = "#FCFCFC";
 bgInput.value = "#1B1B1B";
 
 // Main draw function
-function drawRose() {
+function drawPattern() {
     // Clear the screen
+    x = 0;
+    y = 0;
     ctx.clearRect(0, 0, c.width, c.height);
 
     // Retrieve parameters
@@ -26,21 +32,31 @@ function drawRose() {
     updateSidebar(n, d, inc, scale, size);
 
     // Actually draw
-    let k = n / d;
-    ctx.fillStyle = fillInput.value;
-    for (let i = 0; i < Math.PI * d * 2; i+=inc) {
-        let r = scale * Math.cos(k * i);
-        let x = r * Math.cos(i);
-        let y = r * Math.sin(i);
-        if (isColorRandom) {
-            ctx.fillStyle = randomColor();
-        }
-        ctx.fillRect(center + x, center + y, size, size);
-    }
+    ctx.strokeStyle = fillInput.value;
+    while (y < c.height) {
+        while (x < c.width) {
+            if (Math.random() < probability) {
+                drawLine(x, y, x + length, y + length, lineWidth) 
+            } else {
+                drawLine(x + length, y, x, y + length, lineWidth) 
+            } 
+            x+=length;
+        } 
+        x = 0;
+        y+=length;
+    } 
+}
+
+function drawLine(x, y, x2, y2, stroke) {
+    ctx.lineWidth = stroke;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x2, y2)
+    ctx.stroke();
 }
 
 // Run the initial script
-drawRose(5, 8, 150, 0.01, fillInput.value);
+drawPattern();
 
 
 // ---------- SETTING FUNCTIONS ----------
@@ -57,7 +73,7 @@ function updateSidebar(n, d, inc, scale, size) {
 // Fill Color Picker
 fillInput.addEventListener("change", function() {
     isColorRandom = false;
-    drawRose();
+    drawPattern();
 }, false);
 
 // Background Color Picker
@@ -69,7 +85,7 @@ bgInput.addEventListener("change", function() {
 // Random Colors
 function randomColors() {
     isColorRandom = true;
-    drawRose();
+    drawPattern();
 }
 
 function randomColor() {
