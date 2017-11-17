@@ -3,6 +3,7 @@ let c = document.getElementById("tenPrint");
 c.setAttribute('height', window.innerHeight - 64);
 c.setAttribute('width', window.innerHeight - 64); // Needs to be square-shaped
 let ctx = c.getContext("2d");
+ctx.lineCap = "round";
 
 // Vars
 let x = 0;
@@ -30,6 +31,9 @@ function drawPattern() {
     ctx.strokeStyle = strokeInput.value;
     while (y < c.height) {
         while (x < c.width) {
+            if (isColorRandom) {
+                ctx.strokeStyle = randomColor(); 
+            }
             if (Math.random() < probability) {
                 drawLine(x, y, x + length, y + length, lineWidth) 
             } else {
