@@ -12,27 +12,19 @@ var timeBuffer = 0;
 var start, now, end, update, wait;
 
 function main() {
-
     // If the test hasn't begun
     if (!testBegun) {
         // Wait for click and begin the test 
         c.addEventListener("click", testBegin); 
 
         // Draw initial screen
-        drawSetup(); 
+        drawScreen("#3C3C3C", "Reaction Time Test", "Click anywehere to begin the test", "#FCFCFC");
+
     // If the test has begun
     } else {
         // Wait 1-6 seconds before triggering 
         wait = setTimeout(testTriggered, (Math.random() * 6000) + 1000)
     }
-
-
-}
-
-function drawSetup() {
-    drawScreen("#3C3C3C", "Reaction Time Test", "Click anywehere to begin the test", "#FCFCFC");
-
-    return;
 }
 
 function testBegin(event) {
@@ -42,13 +34,15 @@ function testBegin(event) {
     // Wait for early click
     c.addEventListener("click", earlyClick); 
 
+    // Draw screen
     drawScreen("#3C3C3C", "Waiting", "Click when the background changes colour", "#FCFCFC");
+    
+    // Return to main
     testBegun = true;
     main();
 }
 
 function testTriggered() {
-    
     // Stop waiting for early click
     c.removeEventListener("click", earlyClick); 
 
@@ -63,7 +57,6 @@ function testTriggered() {
 }
 
 function testProcess() {
-
     // Get time now
     now = +new Date();
     var diff = now - start;
@@ -71,12 +64,10 @@ function testProcess() {
     // Draw Screen
     drawScreen("#FCFCFC", "Click!", diff + " ms", "#1B1B1B");
 
-
     return;
 }
 
 function testFinished() {
-
     // Stop updating
     clearInterval(update);
     c.removeEventListener("click", testFinished);
