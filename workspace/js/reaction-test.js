@@ -7,17 +7,24 @@ ctx.lineCap = "round";
 
 // Vars
 var testClicked = false;
+var testBegun = false;
 var timeBuffer = 0;
-var start, end;
+var start, now, end, update;
 
 function main() {
-    // Draw initial screen
-    drawSetup(); 
- 
-    // Wait for click and show next screen
-    c.addEventListener("click", testBegin); 
 
+    // If the test hasn't begun
+    if (!testBegun) {
+        // Wait for click and begin the test 
+        c.addEventListener("click", testBegin); 
 
+        // Draw initial screen
+        drawSetup(); 
+    // If the test has begun
+    } else {
+        // Wait 2-4 seconds before triggering 
+        setTimeout(testTriggered, (Math.random() * 4000) + 2000)
+    }
 
 
 }
@@ -42,6 +49,9 @@ function testBegin(event) {
     // Stop waiting for click
     c.removeEventListener("click", testBegin); 
 
+    // Wait for early click
+    c.addEventListener("click", earlyClick); 
+
     // Draw bg
     ctx.fillStyle = "#3C3C3C";
     ctx.fillRect(0, 0, c.width, c.height);
@@ -54,22 +64,26 @@ function testBegin(event) {
     ctx.font =  "20px sans-serif";
     ctx.fillText("Click anywhere when the background changes colour", c.width/2, c.height/2 + 13);
 
-    // Wait a random amount of time between 2-8 seconds before triggering the test
-    setTimeout(testTriggered, (Math.random() * 4000) + 2000)
+    testBegun = true;
+    main();
 }
 
 function testTriggered() {
     // Start timer
-     
+    start = +new Date();     
 
     // Wait for click
-    c.addEventListener("clicked", testFinished); 
+    c.addEventListener("click", testFinished); 
 
     // Update the screen every 10 ms
-    setInterval(testProcess, 10);  
+    update = setInterval(testProcess, 1);  
 }
 
 function testProcess() {
+
+    // Get time now
+    now = +new Date();
+    var diff = now - start;
 
     // Draw bg
     ctx.fillStyle = "#FCFCFC";
@@ -81,14 +95,41 @@ function testProcess() {
     ctx.textAlign = "center";
     ctx.fillText("Click!", c.width/2, c.height/2 - 13);
     ctx.font =  "20px sans-serif";
-    ctx.fillText(timeBuffer + " ms", c.width/2, c.height/2 + 13);
+    ctx.fillText(diff + " ms", c.width/2, c.height/2 + 13);
 
 
     return;
 }
 
 function testFinished() {
-    document.write("F");
+
+    // Stop updating
+    clearInterval(update);
+    c.removeEventListener("click", testFinished);
+
+    // Wait for click to begin the test again
+    c.addEventListener("click", testBegin); 
+
+    // Calculate the reaction time
+    end = +new Date();
+    var diff = end - start;
+
+    // Clear screen 
+    ctx.fillStyle = "#FCFCFC";
+    ctx.fillRect(0, 0, c.width, c.height);
+
+    // Draw text
+    ctx.font = "bold 30px sans-serif";
+    ctx.fillStyle = "#1B1B1B";
+    ctx.textAlign = "center";
+    ctx.fillText(diff + " ms", c.width/2, c.height/2 - 13);
+    ctx.font =  "20px sans-serif";
+    ctx.fillText("Click anywhere to try again", c.width/2, c.height/2 + 13);
+}
+
+function earlyClick() {
+
 }
 
 main();
+
