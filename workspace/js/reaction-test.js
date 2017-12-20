@@ -10,7 +10,9 @@ ctx.lineCap = "round";
 let testBegun = false;
 let start, now, end, update, wait;
 let reactionBgInput = document.getElementById("reaction-bg");
+let reactionTextInput = document.getElementById("reaction-text");
 let reactionBgColor = reactionBgInput.value;
+let reactionTextColor = reactionTextInput.value;
 let resultArray = [];
 
 function main() {
@@ -64,7 +66,7 @@ function testProcess() {
     let diff = now - start;
     
     // Draw Screen
-    drawScreen(reactionBgColor, "Click!", diff + " ms", "#1B1B1B");
+    drawScreen(reactionBgColor, "Click!", diff + " ms", reactionTextColor);
 
     return;
 }
@@ -81,12 +83,13 @@ function testFinished() {
     end = +new Date();
     let diff = end - start;
 
-    // Append the result to the array
+    // Append the result to the array and update the average
     resultArray.push(diff);
-    console.log(resultArray);
+    console.log(resultArray.length);
+
 
     // Draw screen
-    drawScreen("#FCFCFC", diff + " ms", "Click anywhere to try again", "#1B1B1B");
+    drawScreen(reactionBgColor, diff + " ms", "Click anywhere to try again", reactionTextColor);
 
 }
 
@@ -129,6 +132,10 @@ reactionBgInput.addEventListener("change", function() {
     reactionBgColor = reactionBgInput.value;
 }, false);
 
+// Reaction Text Color Picker
+reactionTextInput.addEventListener("change", function() {
+    reactionTextColor = reactionTextInput.value;
+}, false);
 
 // Begin the program
 main();

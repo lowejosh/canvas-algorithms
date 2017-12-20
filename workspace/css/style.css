@@ -73,6 +73,16 @@ canvas {
     background-color: #131313;
 }
 
+.sidebar-secondary-title {
+    margin-top: 32px;
+    font-weight: bold;
+    width: 190px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background-color: #131313;
+}
+
 .sidebar {
     text-align: center;
     display: inline-block;
