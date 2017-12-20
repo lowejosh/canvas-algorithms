@@ -5,11 +5,13 @@ c.setAttribute('width', window.innerHeight - 64); // Needs to be square-shaped
 let ctx = c.getContext("2d");
 ctx.lineCap = "round";
 
+//TODO
 // Vars
-var testClicked = false;
-var testBegun = false;
-var timeBuffer = 0;
-var start, now, end, update, wait;
+let testBegun = false;
+let start, now, end, update, wait;
+let reactionBgInput = document.getElementById("reaction-bg");
+let reactionBgColor = reactionBgInput.value;
+let resultArray = [];
 
 function main() {
     // If the test hasn't begun
@@ -59,7 +61,7 @@ function testTriggered() {
 function testProcess() {
     // Get time now
     now = +new Date();
-    var diff = now - start;
+    let diff = now - start;
     
     // Draw Screen
     drawScreen("#FCFCFC", "Click!", diff + " ms", "#1B1B1B");
@@ -77,7 +79,11 @@ function testFinished() {
 
     // Calculate the reaction time
     end = +new Date();
-    var diff = end - start;
+    let diff = end - start;
+
+    // Append the result to the array
+    resultArray.push(diff);
+    console.log(resultArray);
 
     // Draw screen
     drawScreen("#FCFCFC", diff + " ms", "Click anywhere to try again", "#1B1B1B");
@@ -110,8 +116,19 @@ function drawScreen(bgcolor, heading, sub, color) {
     ctx.fillText(heading, c.width/2, c.height/2 - 13);
     ctx.font =  "20px sans-serif";
     ctx.fillText(sub, c.width/2, c.height/2 + 13);
-}
+  }
 
+/* 
+=====================================================
+                  SETTING FUNCTIONS
+=====================================================
+                                                   */
+// TODO
+// Reaction Background Color Picker
+reactionBgInput.addEventListener("change", function() {
+    reactionBgColor = reactionBgInput.value;
+}, false);
+
+
+// Begin the program
 main();
-
-

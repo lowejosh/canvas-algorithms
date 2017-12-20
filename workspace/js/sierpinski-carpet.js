@@ -28,6 +28,7 @@ function iteration(x, y, iterationCount) {
         if (randomLayeredColors == true) {
             ctx.fillStyle = colorList[iterationCount - 1];
         }
+
         if (iterationCount != iterations + 1) {
             square = getSquareSize(iterationCount);
             ctx.fillRect(x, y, square, square);
