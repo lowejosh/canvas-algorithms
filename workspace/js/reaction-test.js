@@ -8,7 +8,7 @@ ctx.lineCap = "round";
 //TODO
 // Vars
 let testBegun = false;
-let start, now, end, update, wait;
+let start, now, end, update, wait, average;
 let reactionBgInput = document.getElementById("reaction-bg");
 let reactionTextInput = document.getElementById("reaction-text");
 let reactionBgColor = reactionBgInput.value;
@@ -85,8 +85,12 @@ function testFinished() {
 
     // Append the result to the array and update the average
     resultArray.push(diff);
-    console.log(resultArray.length);
-
+    let sum = 0;
+    for (let i = 0; i < resultArray.length; i++) {
+        sum+=resultArray[i]; 
+    }
+    average = Math.round(sum / resultArray.length);
+    document.getElementById('reaction-average').innerHTML = average + " ms";
 
     // Draw screen
     drawScreen(reactionBgColor, diff + " ms", "Click anywhere to try again", reactionTextColor);
@@ -126,7 +130,6 @@ function drawScreen(bgcolor, heading, sub, color) {
                   SETTING FUNCTIONS
 =====================================================
                                                    */
-// TODO
 // Reaction Background Color Picker
 reactionBgInput.addEventListener("change", function() {
     reactionBgColor = reactionBgInput.value;
