@@ -64,7 +64,7 @@ function testProcess() {
     let diff = now - start;
     
     // Draw Screen
-    drawScreen("#FCFCFC", "Click!", diff + " ms", "#1B1B1B");
+    drawScreen(reactionBgColor, "Click!", diff + " ms", "#1B1B1B");
 
     return;
 }
