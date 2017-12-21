@@ -5,10 +5,9 @@ c.setAttribute('width', window.innerHeight - 64); // Needs to be square-shaped
 let ctx = c.getContext("2d");
 ctx.lineCap = "round";
 
-//TODO
 // Vars
 let testBegun = false;
-let start, now, end, update, wait, average, best, worst;
+let start, now, end, update, wait, average, median, best, worst;
 let reactionBgInput = document.getElementById("reaction-bg");
 let earlyClicks = reactionCount = 0;
 let reactionTextInput = document.getElementById("reaction-text");
@@ -79,7 +78,6 @@ function testFinished() {
 
 	// Update reaction count
 	reactionCount++;
-	document.getElementById("reaction-count").innerHTML = reactionCount;
 
     // Wait for click to begin the test again
     c.addEventListener("click", testBegin); 
@@ -96,7 +94,6 @@ function testFinished() {
 	} else {
 		best = diff
 	}
-    document.getElementById('reaction-best').innerHTML = best + " ms";
 
 	// Make the first reaction time the current worst, and update whenever a higher time is achieved
 	if (typeof worst !== 'undefined') {
@@ -106,20 +103,27 @@ function testFinished() {
 	} else {
 		worst = diff
 	}
-    document.getElementById('reaction-worst').innerHTML = worst + " ms";
 
-    // Append the result to the array and update the average
+    // Append the result to the array 
     resultArray.push(diff);
     let sum = 0;
     for (let i = 0; i < resultArray.length; i++) {
         sum+=resultArray[i]; 
     }
+
+    // Find the median and average
     average = Math.round(sum / resultArray.length);
-    document.getElementById('reaction-average').innerHTML = average + " ms";
+    median = Math.round(findMedian(resultArray));
 
     // Draw screen
     drawScreen(reactionBgColor, diff + " ms", "Click anywhere to try again", reactionTextColor);
 
+    // Update HTML Values
+    document.getElementById('reaction-average').innerHTML = average + " ms";
+    document.getElementById('reaction-median').innerHTML = median + " ms";
+    document.getElementById('reaction-worst').innerHTML = worst + " ms";
+	document.getElementById("reaction-count").innerHTML = reactionCount;
+    document.getElementById('reaction-best').innerHTML = best + " ms";
 }
 
 function earlyClick() {
@@ -154,9 +158,14 @@ function drawScreen(bgcolor, heading, sub, color) {
     ctx.fillText(sub, c.width/2, c.height/2 + 13);
   }
 
+function findMedian(array){
+  array = array.sort(function(a, b){ return a - b; });
+  var i = array.length / 2;
+  return i % 1 == 0 ? (array[i - 1] + array[i]) / 2 : array[Math.floor(i)];
+
 /* 
 =====================================================
-                  SETTING FUNCTIONS
+                 SETTING LISTENERS
 =====================================================
                                                    */
 // Reaction Background Color Picker
@@ -168,6 +177,8 @@ reactionBgInput.addEventListener("change", function() {
 reactionTextInput.addEventListener("change", function() {
     reactionTextColor = reactionTextInput.value;
 }, false);
+
+}
 
 // Begin the program
 main();
