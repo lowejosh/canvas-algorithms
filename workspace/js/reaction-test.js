@@ -159,9 +159,10 @@ function drawScreen(bgcolor, heading, sub, color) {
   }
 
 function findMedian(array){
-  array = array.sort(function(a, b){ return a - b; });
-  var i = array.length / 2;
-  return i % 1 == 0 ? (array[i - 1] + array[i]) / 2 : array[Math.floor(i)];
+    array = array.sort(function(a, b){ return a - b; });
+    var i = array.length / 2;
+    return i % 1 == 0 ? (array[i - 1] + array[i]) / 2 : array[Math.floor(i)];
+}
 
 /* 
 =====================================================
@@ -177,8 +178,6 @@ reactionBgInput.addEventListener("change", function() {
 reactionTextInput.addEventListener("change", function() {
     reactionTextColor = reactionTextInput.value;
 }, false);
-
-}
 
 // Begin the program
 main();
