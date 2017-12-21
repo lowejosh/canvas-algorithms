@@ -8,8 +8,9 @@ ctx.lineCap = "round";
 //TODO
 // Vars
 let testBegun = false;
-let start, now, end, update, wait, average;
+let start, now, end, update, wait, average, best, worst;
 let reactionBgInput = document.getElementById("reaction-bg");
+let earlyClicks = reactionCount = 0;
 let reactionTextInput = document.getElementById("reaction-text");
 let reactionBgColor = reactionBgInput.value;
 let reactionTextColor = reactionTextInput.value;
@@ -76,12 +77,36 @@ function testFinished() {
     clearInterval(update);
     c.removeEventListener("click", testFinished);
 
+	// Update reaction count
+	reactionCount++;
+	document.getElementById("reaction-count").innerHTML = reactionCount;
+
     // Wait for click to begin the test again
     c.addEventListener("click", testBegin); 
 
     // Calculate the reaction time
     end = +new Date();
     let diff = end - start;
+
+	// Make the first reaction time the current best, and update whenever a lower time is achieved
+	if (typeof best !== 'undefined') {
+		if (diff < best) {
+			best = diff;
+		}
+	} else {
+		best = diff
+	}
+    document.getElementById('reaction-best').innerHTML = best + " ms";
+
+	// Make the first reaction time the current worst, and update whenever a higher time is achieved
+	if (typeof worst !== 'undefined') {
+		if (diff > worst) {
+			worst = diff;
+		}
+	} else {
+		worst = diff
+	}
+    document.getElementById('reaction-worst').innerHTML = worst + " ms";
 
     // Append the result to the array and update the average
     resultArray.push(diff);
@@ -100,6 +125,10 @@ function testFinished() {
 function earlyClick() {
     // Stop the test
     clearInterval(wait);
+
+	// Update early click count
+	earlyClicks++;
+	document.getElementById("early-clicks").innerHTML = earlyClicks;
 
     // Stop listening for early click
     c.removeEventListener("click", earlyClick);
