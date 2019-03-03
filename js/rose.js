@@ -11,8 +11,18 @@ let bgInput = document.getElementById("backgroundColor");
 let isColorRandom = false;
 fillInput.value = "#FCFCFC";
 bgInput.value = "#1B1B1B";
+let currentN = 4;
+let currentD = 5;
+let currentlyAnimating = false;
+let interval;
 
-// Main draw function
+// Main function that handles animating check
+function main() {
+    currentlyAnimating = true;
+    drawRose();
+}
+
+// Draw function
 function drawRose() {
     // Clear the screen
     ctx.clearRect(0, 0, c.width, c.height);
@@ -25,10 +35,32 @@ function drawRose() {
     let size = parseInt(document.getElementById("thickChoice").value);
     updateSidebar(n, d, inc, scale, size);
 
+    // For animation effect
+    if (currentN != n) {
+        if (currentN < n - 0.01) {
+            currentN+=0.01;
+        } else if (currentN > n + 0.01) {
+            currentN-=0.01;
+        } else {
+            currentN = n;
+        }
+    }
+    if (currentD != d - 0.01) {
+        if (currentD < d - 0.01) {
+            currentD+=0.01;
+        } else if (currentD > d + 0.01) {
+            currentD-=0.01;
+        } else {
+            currentD = d;
+        }
+    }
+    console.log(currentlyAnimating);
+
     // Actually draw
-    let k = n / d;
+    console.log(currentN + " : " + n);
+    let k = currentN / currentD;
     ctx.fillStyle = fillInput.value;
-    for (let i = 0; i < Math.PI * d * 2; i+=inc) {
+    for (let i = 0; i < Math.PI * currentD * 2; i+=inc) {
         let r = scale * Math.cos(k * i);
         let x = r * Math.cos(i);
         let y = r * Math.sin(i);
@@ -36,6 +68,21 @@ function drawRose() {
             ctx.fillStyle = randomColor();
         }
         ctx.fillRect(center + x, center + y, size, size);
+    }
+
+    if (currentN != n || currentD != d) {
+        if (currentlyAnimating) {
+            currentlyAnimating = false;
+            interval = setInterval(function() {
+                console.log("REEE");
+                drawRose();
+            }, 10);
+        }
+    }
+    if (currentN == n && currentD == d) {
+        console.log("reee");
+        currentlyAnimating = false;
+        clearInterval(interval);
     }
 }
 
