@@ -15,11 +15,14 @@ let currentN = 4;
 let currentD = 5;
 let currentlyAnimating = false;
 let interval;
+let intervalSet = false;
 
 // Main function that handles animating check
 function main() {
-    currentlyAnimating = true;
-    drawRose();
+    if (!currentlyAnimating) {
+        currentlyAnimating = true;
+        drawRose();
+    }
 }
 
 // Draw function
@@ -54,10 +57,10 @@ function drawRose() {
             currentD = d;
         }
     }
-    console.log(currentlyAnimating);
 
     // Actually draw
-    console.log(currentN + " : " + n);
+    console.log("N: " + currentN + " : " + n);
+    console.log("D: " + currentD + " : " + d);
     let k = currentN / currentD;
     ctx.fillStyle = fillInput.value;
     for (let i = 0; i < Math.PI * currentD * 2; i+=inc) {
@@ -71,17 +74,16 @@ function drawRose() {
     }
 
     if (currentN != n || currentD != d) {
-        if (currentlyAnimating) {
-            currentlyAnimating = false;
+        if (!intervalSet) {
             interval = setInterval(function() {
-                console.log("REEE");
                 drawRose();
             }, 10);
+            intervalSet = true;
         }
     }
     if (currentN == n && currentD == d) {
-        console.log("reee");
         currentlyAnimating = false;
+        intervalSet = false;
         clearInterval(interval);
     }
 }
