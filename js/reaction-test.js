@@ -36,7 +36,7 @@ function testBegin(event) {
     c.removeEventListener("click", testBegin); 
 
     // Wait for early click
-    c.addEventListener("click", earlyClick); 
+    c.addEventListener("mousedown", earlyClick); 
 
     // Draw screen
     drawScreen("#3C3C3C", "Waiting", "Click when the background changes colour", "#FCFCFC");
@@ -48,13 +48,13 @@ function testBegin(event) {
 
 function testTriggered() {
     // Stop waiting for early click
-    c.removeEventListener("click", earlyClick); 
+    c.removeEventListener("mousedown", earlyClick); 
 
     // Start timer
     start = +new Date();     
 
     // Wait for click
-    c.addEventListener("click", testFinished); 
+    c.addEventListener("mousedown", testFinished); 
 
     // Update the screen every 10 ms
     update = setInterval(testProcess, 1);  
@@ -74,7 +74,7 @@ function testProcess() {
 function testFinished() {
     // Stop updating
     clearInterval(update);
-    c.removeEventListener("click", testFinished);
+    c.removeEventListener("mousedown", testFinished);
 
 	// Update reaction count
 	reactionCount++;
